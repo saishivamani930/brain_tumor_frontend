@@ -7,19 +7,28 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Build/cache
+node_modules/
+dist/
+dist-ssr/
+.cache/
+.parcel-cache/
 
-# Editor directories and files
+# Local env (keep examples only)
+.env*
+!.env.example
+
+# Vercel / tool artifacts
+.vercel/
+.bolt/
+
+# Editor/OS
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-.env

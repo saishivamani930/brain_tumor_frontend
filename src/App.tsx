@@ -1,17 +1,23 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import Navigation from './components/Navigation';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import Upload from './pages/Upload';
-import HowItWorks from './pages/HowItWorks';
-import Developer from './pages/Developer';
-import Help from './pages/Help';
-import Contact from './pages/Contact';
+// src/App.tsx
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
+import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
+
+import Home from "./pages/Home";
+import About from "./pages/About";
+// import Upload from './pages/Upload'  // not used
+import HowItWorks from "./pages/HowItWorks";
+import Developer from "./pages/Developer";
+import Help from "./pages/Help";
+import Contact from "./pages/Contact";
+
+// If your component file is Uploader.tsx, use the line below.
+// If it's Uploader.jsx, change the import to: "./components/Uploader.jsx"
+import Uploader from "./components/Uploader";
+
+export default function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex flex-col">
@@ -20,7 +26,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/upload" element={<Upload />} />
+            <Route path="/upload" element={<Uploader />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/developer" element={<Developer />} />
             <Route path="/help" element={<Help />} />
@@ -32,5 +38,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;
