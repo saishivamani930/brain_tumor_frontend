@@ -1,8 +1,8 @@
-// src/components/Navigation.tsx
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Brain, Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
+
 
 const navLinks = [
   { path: "/", label: "Home" },

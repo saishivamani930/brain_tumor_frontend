@@ -1,23 +1,17 @@
 // src/App.tsx
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
-// import Upload from './pages/Upload'  // not used
 import HowItWorks from "./pages/HowItWorks";
 import Developer from "./pages/Developer";
 import Help from "./pages/Help";
 import Contact from "./pages/Contact";
-
-// If your component file is Uploader.tsx, use the line below.
-// If it's Uploader.jsx, change the import to: "./components/Uploader.jsx"
 import Uploader from "./components/Uploader";
 
-export default function App() {
+function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex flex-col">
@@ -38,3 +32,5 @@ export default function App() {
     </Router>
   );
 }
+
+export default App;

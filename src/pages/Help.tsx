@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, HelpCircle, FileText, Shield, Settings } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useState } from "react";
+import { ChevronDown, ChevronUp, HelpCircle, FileText, Shield, Settings } from "lucide-react";
+import { motion } from "framer-motion";
+
 
 const Help = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);

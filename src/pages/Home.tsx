@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { Brain, AlertTriangle, ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { Brain, ArrowRight, AlertTriangle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (

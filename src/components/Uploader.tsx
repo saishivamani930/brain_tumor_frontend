@@ -1,6 +1,7 @@
 // src/components/Uploader.tsx
 import { useState } from "react";
 
+
 type Probs = Record<string, number>;
 
 interface PredictResponse {
@@ -8,6 +9,7 @@ interface PredictResponse {
   probs: Probs;
 }
 
+// ✅ Base API URL comes from environment variable (set in Vercel)
 const API = import.meta.env.VITE_API_URL as string;
 
 export default function Uploader() {
@@ -23,13 +25,19 @@ export default function Uploader() {
     setResult(null);
 
     try {
-      // warm backend (helps with Render free-plan cold start)
+      // ✅ Warm backend (important for Render cold starts)
       await fetch(`${API}/health`).catch(() => {});
 
+      // ✅ Prepare form data (field name must be 'image')
       const fd = new FormData();
-      fd.append("image", file); // field name must be exactly 'image'
+      fd.append("image", file);
 
-      const res = await fetch(`${API}/predict`, { method: "POST", body: fd });
+      // ✅ Call FastAPI backend
+      const res = await fetch(`${API}/predict`, {
+        method: "POST",
+        body: fd,
+      });
+
       if (!res.ok) {
         const text = await res.text().catch(() => "");
         throw new Error(text || `HTTP ${res.status}`);
@@ -57,8 +65,10 @@ export default function Uploader() {
         </button>
       </form>
 
+      {/* ✅ Error Display */}
       {err && <p style={{ color: "crimson" }}>Error: {err}</p>}
 
+      {/* ✅ Prediction Result */}
       {result && (
         <div style={{ marginTop: 16 }}>
           <h3>Prediction: {result.pred_class}</h3>

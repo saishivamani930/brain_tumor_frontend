@@ -1,4 +1,3 @@
-import React from 'react';
 import { Upload, Brain, BarChart3, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
