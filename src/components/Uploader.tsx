@@ -1,7 +1,6 @@
 // src/components/Uploader.tsx
 import { useState } from "react";
 
-
 type Probs = Record<string, number>;
 
 interface PredictResponse {
@@ -9,8 +8,9 @@ interface PredictResponse {
   probs: Probs;
 }
 
-// ✅ Base API URL comes from environment variable (set in Vercel)
-const API = import.meta.env.VITE_API_URL as string;
+// ✅ Base API URL comes from environment (Vercel) or falls back to localhost
+const API =
+  (import.meta.env.VITE_API_URL as string) || "http://localhost:8000";
 
 export default function Uploader() {
   const [file, setFile] = useState<File | null>(null);
@@ -40,19 +40,28 @@ export default function Uploader() {
 
       if (!res.ok) {
         const text = await res.text().catch(() => "");
-        throw new Error(text || `HTTP ${res.status}`);
+        throw new Error(
+          `Backend error (${res.status}): ${text || "no details"}`
+        );
       }
 
       const data = (await res.json()) as PredictResponse;
       setResult(data);
     } catch (e: unknown) {
-      setErr(e instanceof Error ? e.message : String(e));
+      setErr(
+        e instanceof Error
+          ? `Failed to connect to ${API}: ${e.message}`
+          : String(e)
+      );
     }
   };
 
   return (
     <div style={{ maxWidth: 560, margin: "32px auto", padding: 16 }}>
       <h1>Neuro Scan Assist</h1>
+      <p style={{ fontSize: "0.9em", color: "gray" }}>
+        Using API: <code>{API}</code>
+      </p>
 
       <form onSubmit={onSubmit} encType="multipart/form-data">
         <input
